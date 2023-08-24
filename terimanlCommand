@@ -1,0 +1,294 @@
+0. Setup User
+
+git config --global user.name "fais nasir"
+git config --global user.email "faeznasir19@gmail.com"
+
+//////////////////////////////////////////////////////
+
+1. Guna VSC
+
+git config --global core.editor "code --wait"  //--wait untuk jangan menutup git bash lepas VSC buka
+git config --global diff.tool "default-difftool"
+git config --global difftool.default-difftool.cmd "code --wait --diff \$LOCAL \$REMOTE"
+
+///////////////////////////////////////////////////////
+
+2. Melihat seluruh Config
+
+git config --list -show-origin  //cara 1
+git config --list               //cara 2 
+
+/////////////////////////////////////////////////////
+
+3. create repo
+
+git init
+
+////////////////////////////////////////////////////
+
+4. Status Git
+
+git status
+
+////////////////////////////////////////////////////
+
+5. The Three States
+
+- Modified
+- Staged 
+- Commit
+
+* Harap diperhatikan, ini adalah hal utama yang wajib dimengerti di Git agar selanjutnya bisa mengerti dengan baik
+* Git memiliki tiga state terhadap file kita: modified, staged dan committed
+* Modified artinya kita mengubah (menambah, mengedit, menghapus) file, namun belum disimpan secara permanen ke repository
+* Staged artinya kita menandai modifikasi yang kita lakukan terhadap file akan disimpan secara permanen ke repository
+* Committed artinya data sudah aman disimpan di repository
+
+
+////////////////////////////////////////////////////
+
+6. Three Section
+
+- Working area
+- Staging Area
+- Repository
+
+* Tiga state sebelumnya di dalam Git dilakukan di section yang berbeda-beda, yaitu Working Directory, Staging Area dan Repository
+* Saat kita melakukan modifikasi file, itu dilakukan di working directory
+* Staging Area merupakan section dimana file sudah disiapkan untuk disimpan secara permanen, di Staging Area semua informasi perubahan file akan disimpan
+* Repository merupakan tempat dimana semua file dan database riwayat versi file disimpan
+
+////////////////////////////////////////////////////
+
+7. Workflow
+
+* Sekarang kita sudah tahu tentang arsitektur Three Tree, sekarang pertanyaannya, bagaimana alur kerja menggunakan Git
+* Secara sederhana, setiap perubahan akan kita lakukan di working directory
+* Jika ada yang mau kita siapkan untuk disimpan secara permanen, kita akan bawa perubahan tersebut ke staging index
+* Selanjutnya, kita bisa melakukan penyimpanan versi baru secara permanen ke repository
+
+////////////////////////////////////////////////////
+
+8. Snapshot
+
+* Pada materi sebelumnya kita selalu menyebutkan versi pada perubahan file
+* Sebenarnya perubahan yang dilakukan bisa jadi dilakukan secara bersamaan untuk beberapa file, hal ini berarti sebenarnya tidak ada yang namanya versi file
+* Semua perubahan yang terjadi akan direkam, dan kita sebut namanya adalah snapshot
+* Snapshot berisikan semua perubahan yang terjadi di semua file yang kita commit
+* Setiap snapshot akan menghasilkan hash
+
+////////////////////////////////////////////////////
+
+9. Hash
+
+* Setiap snapshot yang kita lakukan, semua akan menghasilkan hash sebagai identitas snapshot nya
+* Hash merupakan checksum untuk menghitung perubahan yang terjadi
+* Git menggunakan algoritma SHA-1 untuk menghitung hash
+* Hash dibutuhkan untuk menjaga data integrity, sehingga tidak tiap snapshot yang sudah kita lakukan tidak bisa diubah, hal ini karena akan secara otomatis merusak hash yang sudah dibuat
+* Contoh hash Git : 30534aeabde65981732c6c469b7583483d379b00
+
+////////////////////////////////////////////////////
+
+10. Penghitungan Hash
+
+* Perhitungan hash dilakukan tidak hanya dari perubahan file
+* Namun juga dari parent, author dan message 
+* Artinya perubahan yang terjadi pada snapshot sebelumnya, maka akan menimbulkan efek berantai, karena semua hash selanjutnya akan berubah
+* Oleh karena itu, hal tersebut tidak bisa dilakukan di Git
+
+////////////////////////////////////////////////////
+
+11. Head
+
+* HEAD merupakan pointer menuju hash yang paling akhir
+* Karena kadang sangat menyulitkan jika harus menuliskan hash value, jika kita akan menuju ke hash paling baru, kita bisa gunakan kata HEAD
+
+////////////////////////////////////////////////////
+
+12. Menambah File
+
+* Untuk menambah file baru ke Repository, kita cukup tambahkan file nya saja
+* Secara otomatis file yang kita tambahkan awalnya akan berada di working directory
+* Secara default saat menambah file baru, file tersebut tidak akan di track perubahannya
+* Agar perubahan di track, kita harus pindahkan dari working directory ke staging index
+
+////////////////////////////////////////////////////
+
+13. Mengubah File
+
+* Untuk melakukan perubahan file, kita cukup lakukan perubahan file terhadap file yang sudah ada di Repository
+* Secara otomatis git bisa mendeteksi perubahan
+* Sama seperti dengan menambah file, jika perubahan ingin kita simpan secara permanen, kita bisa pindahkan ke staging index, lalu commit ke Repository
+
+
+//////////////////////////////////////////////////////
+
+14. Melihat Perubahan File
+
+* Ketika kita melakukan perubahan, Git secara otomatis mendeteksi bahwa file tersebut berubah
+* Jika kita ingin melihat perubahan yang terjadi, kita juga bisa menggunakan  Git untuk melihat perubahan nya dengan perintah :
+git diff
+
+//////////////////////////////////////////////////////
+
+15. Menghapus File
+
+* Untuk menghapus file di Repository, kita cukup lakukan delete file nya di folder nya
+* Secara otomatis Git akan mendeteksi file yang hilang
+* Sama seperti menambah dan menghapus, jika ingin simpan secara permanen di Repository, kita harus  menambahkan operasi tersebut  ke Staging Index,  
+  lalu commit ke Repository 
+
+//////////////////////////////////////////////////////
+
+16. Membatalkan Perubahan
+
+16.1 Membatalkan Penambahan File
+
+* Jika kita menambah  file di Working Directory, lalu misal kita ingin membatalkan perubahannya
+* Caranya cukup sederhana, kita hanya perlu menghapus file tersebut, atau bisa menggunakan perintah :
+  git clean -f
+* hanya untuk file di working directory
+
+16.2 Membatalkan perubahan file
+
+* Jika kita ingin membatalkan perubahan file yang telah kita lakukan, kita bisa menggunakan perintah :
+  git restore namafile
+* hanya di working area
+
+//////////////////////////////////////////////////////
+
+17. Membatalkan Penghapusan File
+
+* Penghapusan file sebenarnya sama dengan perubahan file, jadi jika kita ingin membatalkan penghapusan file, kita bisa gunakan perintah 
+  yang sama dengan membatalkan perubahan file :
+  git restore namafile
+* Hanya di working directory
+
+/////////////////////////////////////////////////////
+
+18. Membatalkan dari Staging Index
+
+* Perintah git restore hanya bisa dilakukan untuk membatalkan perubahan yang terjadi di Working Directory
+* Artinya jika perubahan terlanjur kita masukkan ke Staging Index, maka untuk membatalkannya tidak bisa kita lakukan secara langsung dari Staging Index
+* Kita perlu mengembalikan posisi dari Staging Index ke Working Directory terlebih dahulu, caranya kita bisa gunakan perintah :
+* git restore --staged namafile
+
+/////////////////////////////////////////////////////
+
+19. Membatalkan yang sudah di commit
+
+* Bagaimana jika perubahan yang kita lakukan terlanjur di commit?
+* Tidak ada cara yang bisa kita lakukan jika perubahan sudah terlanjur di commit
+* Yang bisa kita lakukan adalah dengan dua cara, Rollback Commit atau Revert Commit
+
+////////////////////////////////////////////////////
+
+20. Git Log
+
+* Git adalah distributed version control, artinya walaupun kita Repository di local komputer kita, semua riwayat perubahan disimpan di komputer kita
+* Kekurangannya menjadi makin lama Repository akan semakin besar ukurannya, namun keuntungannya, kita bisa melihat semua riwayat commit, atau disebut Commit Log
+* Untuk melihat Commit Log, kita bisa gunakan perintah : 
+  git log
+  git log --oneline
+  alias graph="git log --all --decorate --oneline --graph"
+
+////////////////////////////////////////////////////
+
+21. Melihat Detail Commit
+
+* Kadang kita ingin melihat detail perubahan yang terjadi pada sebuah commit
+* Untuk melakukan itu, kita bisa gunakan perintah :
+  git show hash
+
+////////////////////////////////////////////////////
+
+22. Compare commit
+
+* Git memiliki fitur untuk membandingkan antara commit dengan commit lainnya
+* Namun jangan sampai salah pengertian, membandingkan disini adalah membandingkan snapshot hasil commit, bukan perubahan yang terjadi antara commit
+* Misal pada commit sebelumnya kita pernah menambah file3.txt, namun jika kita bandingkan antara commit pertama dan terakhir (HEAD), hasilnya hanyalah perbandingan antara file1 dan file2, tidak ada file3
+* Hal ini dikarenakan membandingkan commit bukanlah membandingkan perubahan yang pernah terjadi, melainkan membandingkan hasil di commit
+* Untuk membandingkan commit, kita bisa gunakan perintah :
+  git diff hash1 hash2
+  git diff hash1 HEAD
+
+///////////////////////////////////////////////////
+
+23. Difftool
+
+* Sebelumnya kita sudah melakukan pengaturan menggunakan Visual Studio Code untuk melihat diff
+* Jika kita ingin menggunakan visual studio code untuk melihat perbedaan antar commit, kita bisa gunakan perintah :
+  git difftool hash1 hash2
+
+//////////////////////////////////////////////////
+
+24. Rename File
+
+* Hal yang paling menarik di Git adalah, Git bisa mendeteksi rename file
+* Secara sederhana sebenarnya rename file merupakan operasi gabungan antara hapus file, lalu menambah file baru dengan isi yang sama
+* Namun Git bisa otomatis mendeteksi jika terjadi perubahan nama file, karena isi file sebagian besar masih sama
+
+//////////////////////////////////////////////////
+
+25. Reset Commit
+
+* Sebelumnya kita sudah tahu membatalkan perubahan, namun bagaimana jika ternyata perubahan sudah terlanjur kita commit ke Repository?
+* Untuk hal seperti itu, kita bisa melakukan reset commit
+* Reset commit merupakan mekanisme dimana kita menggeser HEAD pointer ke posisi commit yang kita mau, artinya commit selanjutnya akan dilakukan pada posisi HEAD baru
+* Untuk melakukan reset commit, kita bisa gunakan perintah :
+  git reset <mode> hash
+* Ada beberapa mode pengaturan melakukan reset commit
+
+25.1 Mode Git Reset
+
+* --soft, memindahkan HEAD pointer, namun tidak melakukan perubahan apapun di Staging Index dan Working Directory
+* --mixed (default), memindahkan HEAD pointer, mengubah Staging Index menjadi sama seperti dengan Repository, namun tidak mengubah apapun di Working Directory
+* --hard, memindahkan HEAD pointer, dan mengubah Staging Index dan Working Directory sehingga sama dengan Repository
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
