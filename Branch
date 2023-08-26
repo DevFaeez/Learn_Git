@@ -1,0 +1,91 @@
+0. Pengenalan Branching
+
+● Saat ini, hampir semua VCS pasti memiliki fitur branching
+● Branching artinya kita membuat timeline baru yang berbeda dari timeline utama
+● Biasanya timeline utama, atau branch utama disebut dengan master atau main
+● Saat kita membuat timeline branch baru, semua perubahan yang kita lakukan tidak akan merusak timeline branch utama
+● Oleh karena itu fitur branching itu sangat cocok digunakan misal ketika akan menambah fitur di Repository, sehingga jika ternyata bermasalah, kita tinggal mudah pindah ke timeline utama
+● Tidak ada batasan berapa banyak branch yang bisa kita buat di Git, kita bisa bebas membuat branch dari branch manapun
+
+///////////////////////////////////////////
+
+1. BIla Branch Digunakan?
+
+● Dalam pengembanngan perangkat lunak, Branch biasanya dibuat ketika kita akan menambah fitur baru
+● Fitur baru akan ditambahkan di branch baru, sehingga kita bisa bebas menambah fitur tanpa takut melakukan kesalahan di branch utama
+● Ketika fitur sudah siap, kita bisa melakukan merge (menggabungkan) branch fitur baru tersebut ke branch utama
+
+///////////////////////////////////////
+
+2. Membuat Branch
+
+● Untuk membuat branch baru, caranya sangat mudah, kita bisa gunakan perintah :
+  git branch namabranchbaru
+● Saat kita buat branch baru, secara otomatis branch baru akan dimulai dari posisi branch kita saat ini, jika misal kita membuat branch baru ketika posisi kita sedang di branch master, maka branch 
+baru tersebut akan dibuat dari branch master
+
+////////////////////////////////////////////////
+
+3. Pindah ke Branch Lain
+
+● Setelah kita membuat branch baru, kita tidak secara otomatis akan pindah branch
+● Untuk pindah ke branch lain, kita perlu lakukan secara manual
+● Caranya kita bisa gunakan perintah :
+  git switch namabranch
+  git checkout namabranch
+
+//////////////////////////////////////////////
+
+4.Mengubah Nama Branch
+
+● Jika kita melakukan kesalahan pembuatan nama branch, kita juga bisa lakukan perubahan nama branch
+● Namun untuk melakukannya, kita perlu pindah terlebih dahulu ke branch yang ingin kita ubah namanya
+● Setelah pindah branch yang ingin diubah nama, kita bisa gunakan perintah :
+  git branch -m namabranchbaru
+
+//////////////////////////////////////////////
+
+5. Menghapus Branch
+● Jika sebuah branch sudah tidak digunakan lagi, idealnya kita perlu menghapus branch tersebut
+● Untuk menghapus branch, kita perlu keluar terlebih dahulu dari branch tersebut
+● Lalu gunakan perintah :
+  git branch -d namabranch
+  git branch --delete namabranch
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
