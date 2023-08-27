@@ -52,10 +52,44 @@ baru tersebut akan dibuat dari branch master
   git branch -d namabranch
   git branch --delete namabranch
 
+//////////////////////////////////////////////
 
+6. Merge
 
+● Merge adalah proses dimana kita melakukan penggabungan dua buah branch
+● Merge biasanya dilakukan setelah kita selesai membuat kode program di sebuah branch, dan ingin menggabungkan fitur tersebut ke branch lain, misal ke branch utama
+● Saat kita melakukan merge, branch tidak akan dihapus, artinya kita masih tetap bisa melakukan commit di branch yang ada
+● Jika kita ingin menghapus branch yang sudah di merge, kita perlu lakukan secara manual
 
+////////////////////////////////////////////
 
+7.Melakukan Merge
+
+● Untuk melakukan merge, pertama kita perlu pindah ke branch dimana kita lokasi merge akan dilakukan
+● Selanjutnya gunakan perintah :
+  git merge namabranch
+● Artinya branch dari namabranch akan di merge ke dalam branch saat ini kita berada
+
+///////////////////////////////////////////////
+
+8.Merge Conflict
+
+● Dalam pembuatan aplikasi, biasanya setiap programmer akan melakukan penambahkan kode program di Repository secara parallel
+● Biasanya tiap programmer akan membuat branch masing-masing
+● Dan tidak bisa dihindari, kadang programmer akan melakukan perubahan pada kode file yang sama di branch berbeda
+● Dan biasanya ketika melakukan merge, akan terjadi yang namanya conflict
+● Hal ini disebabkan, satu file diubah di branch yang berbeda, sehingga ketika di merge, kita perlu melakukan yang namanya Merge Conflict
+
+////////////////////////////////////////////
+
+9.Membatalkan Conflict
+
+● Jika terjadi conflict, maka kita wajib memperbaikinya terlebih dahulu
+● Semua perubahan yang tidak konflik akan secara otomatis berada di Staging Index
+● Sedangkan perubahan yang konflik akan secara otomatis berada di Working Directory
+● Jika kita ingin membatalkan merge, kita bisa gunakan perintah :
+  git merge --abort
+● Secara otomatis semua perubahan di branch yang ingin kita merge akan dihapus
 
 
 
