@@ -107,18 +107,142 @@ baru tersebut akan dibuat dari branch master
 ● Maka kita bisa melakukan cherry pick untuk commit perubahan tersebut, caranya gunakan perintah :
   git cherry-pick commitId
 
+///////////////////////////////////////
+
+12.Tag
+
+● Tag merupakan fitur, dimana kita bisa menandai sebuah commit id
+● Sebelumnya kita sudah tahu dengan HEAD, yaitu reference ke commit terakhir di branch kita saat ini
+● Jika kita ingin membuat sebuah reference ke sebuah commit, kita bisa menggunakan Tag
+● Dalam pengembangan perangkat lunak, biasanya Tag digunakan sebagai penanda versi rilis dari aplikasi, misal Tag 1.0.0, Tag 1.0.2, dan lain-lain
+● Karena Tag merupakan reference ke commit, jadi Tag bisa dilakukan di branch manapun
+
+//////////////////////////////////////
+
+13.Membuat Tag
+
+● Tag adalah sesuatu yang unik, artinya jika kita sudah membuat tag dengan nama A, maka kita tidak bisa membuat tag dengan nama yang sama lagi
+● Untuk membuat tag, kita bisa gunakan perintah :
+  git tag tagName commitId
+
+//////////////////////////////////////
+
+14.Menampilkan Tag
+
+● Untuk menampilkan semua tag yang ada di Repository, kita bisa menggunakan perintah :
+  git tag -l
+  git tag --list
+
+///////////////////////////////////////
+
+15.Checkout ke Tag
+
+● Seperti yang sudah dijelaskan di kelas Git Dasar, kita kita melihat snapshot sebelumnya di Git
+● Sekarang dengan menggunakan Tag, kita juga bisa melihat snapshot sebelumnya tanpa harus menggunakan commitId, cukup menggunakan Tag :
+  git checkout tagname
+
+////////////////////////////////////////
+
+16.Menghapus Tag
+
+● Tidak ada cara untuk mengubah Tag, jadi jika kita ingin mengubah Tag, kita bisa membuat Tag baru ke commit yang sama, lalu menghapus Tag yang lama
+● Untuk menghapus Tag, kita bisa gunakan perintah :
+  git tag -d namatag
+  git tag --delete namatag
+
+/////////////////////////////////////////
+
+17.Stash
+
+● Kadang ada keadaan, dimana kita sedang melakukan perubahan di sebuah branch, namun perubahan nya belum disimpan di Repository, misal masih di Working atau Staging Index
+● Lalu kita butuh secepatnya melakukan perubahan di branch lain
+● Jika perubahan tersebut belum siap kita commit, kita bisa menyimpan semua perubahan tersebut ke Stash
+● Stash adalah sebuah tempat dimana kita bisa menyimpan perubahan di Working atau Staging Index secara sementara agar branch saat ini menjadi bersih kembali, sehingga kita bisa pindah ke 
+branch lain
+
+////////////////////////////////////////
+
+18.rror Ketika Pindah Branch
+
+● Secara default, ketika kita melakukan perpindahan branch, Git akan secara pintar membawa perubahan yang terjadi di branch saat ini ke branch tujuan pindah
+● Namun jika ternyata terdapat conflict, pada kasus kita, pada file1.txt terdapat conflict, maka secara otomatis kita tidak bisa pindah ke branch tersebut
+
+//////////////////////////////////////////
+
+19.Menyimpan Perubahan ke Stash
+
+● Untuk menyimpan semua perubahan yang terjadi di Working dan Staging Index, kita bisa menggunakan Stash
+● Untuk menyimpan perubahan ke Stash, kita bisa gunakan perintah :
+  git stash push -m ‘message stash’
+● Untuk melihat semua Stash, kita bisa gunakan perintah :
+  git stash list
+● Untuk melihat perubahan yang terjadi di Stash, kita bisa gunakan perintah 
+  git stash show stashId
+
+/////////////////////////////////////////
+
+20.Mengambil Perubahan di Stash
+
+● Untuk mengambil perubah di stash, kita bisa gunakan perintah :
+  git stash apply stashId
+● Untuk menghapus stash, kita bisa gunakan perintah :
+  git stash drop stashId
+● Untuk menghapus semua stash, kita bisa gunakan perintah :
+  git stash clear
 
 
+////////////////////////////////////////
 
+21.Rebase
 
+● Sebelumnya untuk menggabungkan dua buah branch, kita sudah belajar yang namanya merge
+● Sekarang kita akan bahas tentang cara lain menggabungkan dua buah branch, yaitu rebase
+● Rebase agak sedikit kompleks, jadi kita akan coba bahas secara visual
 
+//////////////////////////////////////
 
+22.Melakukan Rebase
 
+● Untuk melakukan rebase, kita bisa lakukan perintah :
+  git rebase namabranch
+● Jika sekarang kita ada di branch feature/rebase, lalu menggunakan perintah :
+  git rebase master
+● Artinya kita melakukan rebase semua commit di master ke branch develop
 
+/////////////////////////////////////
 
+23.Merge Branch
 
+● Setelah melakukan rebase, bukan berarti branch yang di rebase sekarang posisinya ada di branch yang melakukan rebase, posisinya tetap ada di commit terakhir di branch tersebut
+● Seperti yang terlihat pada gambar Diagram Rebase Branch
+● Agar posisinya sama dengan branch yang melakukan rebase, kita bisa menggunakan perintah 
+  merge
 
+/////////////////////////////////////////
 
+24.Merge vs Rebase
+
+● Rebase akan terlihat sangat rapih, karena timeline nya seakan terlihat hanya ada satu timeline pada Repository
+● Namun, rebase sebenarnya secara otomatis menulis ulang semua commit yang kita lakukan, dalam 
+artian commit id pasti berubah, artinya semua referensi ke commit id sebelum-sebelumnya akan rusak dan hilang
+● Tidak ada mana yang lebih baik, semua tergantung kebutuhan
+
+/////////////////////////////////////////
+
+25.Squash
+
+● Saat kita melakukan merge atau rebase, semua commit history akan tetap ada
+● Jadi kita kita di branch tersebut melakukan commit sebanyak 10 kali, ketika kita lakukan merge atau rebase, maka 10 commit tersebut akan tetap ada
+● Kadang ada kasus dimana kita ingin melakukan penggabungan commit tersebut menjadi 1 commit 
+saja, hal ini dinamakan Squash
+● Squash akan membuat 10 commit history tersebut menjadi 1 commit, dimana semua 10 perubahan tersebut akan digabungkan menjadi 1 commit saja
+
+//////////////////////////////////////////
+
+26.Melakukan Squash
+
+● Squash bisa dilakukan ketika merge atau ketika rebase
+● Untuk melakukan squash ketika merge, kita bisa gunakan perintah :git merge --squash namabranch
 
 
 
