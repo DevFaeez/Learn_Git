@@ -244,6 +244,30 @@ saja, hal ini dinamakan Squash
 ● Squash bisa dilakukan ketika merge atau ketika rebase
 ● Untuk melakukan squash ketika merge, kita bisa gunakan perintah :git merge --squash namabranch
 
+//////////////////////////////////////
+
+27. Git Branching Strategy Populer
+
+● Gitflow Workflow
+● Trunk Based Development Workflow
+● Forking Workflow
+
+27.1 Gitflow Workflow
+
+● Gitflow adalah strategi git branching yang paling tua dan paling banyak diadopsi
+● https://nvie.com/posts/a-successful-git-branching-model/
+
+27.2 Trunk Based Development
+
+● Trunk Based Development sekarang merupakan salah satu strategi git branching yang sedang populer
+● Tujuan dari workflow ini adalah, sederhana dan deliver pekerjaan secepatnya
+● https://trunkbaseddevelopment.com/
+
+27.3 Forking Workflow
+
+● Forking workflow merupakan salah satu strategi git branching yang populer dalam project OpenSource
+● Forking adalah mekanisme menduplikasi repository, biasanya hal ini dilakukan karena contributor tidak memiliki akses untuk melakukan perubahan ke repository utama
+● https://www.atlassian.com/git/tutorials/comparing-workflows/forking-workflow
 
 
 
