@@ -1,3 +1,4 @@
+KEY: 9988
 0.Git Remote
 
 ● Sebelumnya kita sudah belajar semua fitur yang terdapat di Git
@@ -23,6 +24,232 @@
 ● Git Server adalah Server yang bisa digunakan untuk menyimpan repository git yang sudah kita buat di local
 ● Ada banyak sekali Git Server yang tersedia, baik itu yang gratis atau pun berbayar
 ● Kelebihan ketika kita menggunakan Git Server adalah, data repository aman tersimpan di Server, sehingga jika kita hapus git repository nya di local, repository akan tetap aman di Server
+
+//////////////////////////////////////////////
+
+3.Git Server Repository
+
+● Tiap Git Server biasanya memiliki fitur untuk membuat Git Repository
+● Tidak wajib kita harus membuat Git Repository di local dulu jika ingin membuat Git Repository di Git Server
+● Sekarang silahkan buat Git Repository di Github dengan nama belajar-git-remote
+● https://github.com/new
+
+/////////////////////////////////////////////////
+
+4.SSH
+● SSH adalah singkatan dari Secure Shell
+● SSH merupakan protokol jaringan untuk komunikasi jaringan yang aman dan terenkripsi
+● Pengguna sistem operasi Linux atau Mac biasanya sudah sangat familiar dengan SSH
+● SSH merupakan aplikasi berbasis terminal
+● Di Linux dan Mac, SSH sudah terinstall secara otomatis, sedangkan di Windows, ketika kita menginstall Git, secara otomatis Git akan menginstall SSH juga
+
+////////////////////////////////////////////////
+
+5.Git SSH
+● Git sendiri memiliki beberapa mekanisme untuk berkomunikasi dengan Git Server, seperti http dan SSH
+● Pada kelas ini, kita akan menggunakan SSH untuk berkomunikasi dengan Git Server
+● Hal ini karena SSH merupakan protokol yang direkomendasikan ketika berkomunikasi dengan Git Server
+
+/////////////////////////////////////////////
+
+6.SSH Key
+
+● Hal pertama yang perlu kita lakukan ketika menggunakan SSH adalah, membuat SSH Key
+● SSH Key merupakan kunci yang digunakan untuk autentikasi ke SSH Server
+  Github: SSH Server
+  laptop Kita: SSH Client
+● Untuk membuat SSH Key, kita bisa gunakan perintah ssh-keygen di terminal
+● Setelah selesai, maka secara otomatis akan terdapat 2 key di local kita, yaitu private key dan public key
+● Kita bisa melihatnya di dalam folder .ssh di Home directory kita
+● File id_rsa adalah private key, dan id_rsa.pub adalah public key
+  public key: untuk github
+  private key: untuk local
+
+
+////////////////////////////////////////////////
+
+7.Menambahkan SSH Public Key ke Github
+
+● Setelah kita membuat SSH Key, selanjutnya kita perlu meregistrasikan SSH public key ke Github
+● Hal ini dilakukan, agar ketika kita nanti terkoneksi ke Git Server di Github, kita tidak perlu melakukan autentikasi lagi
+● https://github.com/settings/keys
+
+/////////////////////////////////////////////
+
+8.Test SSH ke Github
+● Selanjutnya untuk memastikan apakah kita sudah bisa terkoneksi ke Github menggunakan SSH, kita bisa gunakan perintah :
+  ssh -T git@github.com
+
+Hi DevFaeez! You've successfully authenticated, but GitHub does not provide shell access.
+
+that mean connection is succes
+
+/////////////////////////////////////////////
+
+9.Remote Repository
+
+● Ketika kita membuat Git Project, secara default, Git tidak tahu tentang Remote Repository
+● Kita perlu memberi tahu ke git project yang sudah kita buat tentang lokasi git repository
+
+///////////////////////////////////////////
+
+10.Menambah Remote Repository
+
+● Untuk menambah remote repository, kita bisa gunakan perintah :
+  git remote add nama ssh-url
+● Salah satu kebiasaan di Git, biasanya memberi nama untuk remote repository dengan nama origin
+
+///////////////////////////////////////
+
+11.Melihat Remote Repository
+
+● Untuk melihat remote repository yang ada di git project, kita bisa gunakan perintah :
+  git remote
+● Untuk melihat URL detail remote repository, kita bisa gunakan perintah 
+  git remote get-url nama
+
+////////////////////////////////////
+
+12.Menghapus Remote Repository
+
+● Untuk menghapus remote repository, kita bisa gunakan perintah :
+  git remote rm nama
+
+////////////////////////////////////
+
+13.Push
+● Walaupun kita sudah menyimpan perubahan di Git Project di local, tapi tidak secara otomatis akan di sync dengan Remote Repository
+● Hal ini karena sejak awal Git di desain sebagai distributed version control, artinya kita bisa melakukan perubahan dimanapun dan kapanpun, tanpa harus terkoneksi ke Git Server
+● Oleh karena itu, jika kita ingin mengirim perubahan yang terjadi di Git Project di local kita, kita perlu mengirimnya secara manual ke Git Server
+● Untuk mengirim perubahan di local ke git server, kita bisa gunakan perintah yang bernama push
+
+///////////////////////////////////
+
+14.Push Branch
+
+● Untuk mengirim perubahan branch ke remote repository dengan nama branch sama:
+  git push namaremote localbranch
+● Untuk mengirim perubahan branch ke remote repository dengan nama branch yang berbeda, kita bisa gunakan perintah :
+  git push namaremote localbranch:remotebranch
+
+/////////////////////////////////////
+
+15.Push Semua Branch
+
+● Jika kita ingin mengirim semua perubahan di semua branch ke remote repository, kita bisa gunakan perintah :
+  git push origin --all
+
+///////////////////////////////////
+
+16.Menghapus Branch
+
+● Perintah Push juga bisa digunakan untuk menghapus branch yang ada di remote repository
+● Kita bisa gunakan perintah 
+  git push --delete namaremote namabranch
+● Perlu diingat, menghapus remote branch bukan berarti menghapus branch di local, jadi jika kita ingin hapus di local, kita harus lakukan secara manual
+
+///////////////////////////////////////
+
+17.Clone
+
+● Apa yang harus dilakukan jika misal kita ingin download project Git yang ada di Server ke komputer baru?
+● Hal ini dinamakan perintah clone
+● Dengan perintah clone, kita bisa download project di remote repository ke local dan secara otomatis di download sebagai git project
+
+//////////////////////////////////////////
+
+18.Melakukan Clone
+
+● Untuk melakukan clone, kita bisa gunakan perintah :
+  git clone urlremoterepository
+● Secara default, clone akan membuat project dengan nama folder sama dengan nama project remote repository
+● Jika kita ingin melakukan clone, dengan nama folder yang berbeda dengan nama project remote repository, kita bisa gunakan perintah :
+  git clone urlremoterepository namafolder
+
+///////////////////////////////////////////
+
+19.Default Hasil Clone
+
+● Default clone akan berisi remote repository origin ke git remote repository yang kita clone
+● Default clone akan berisikan branch utama di remote repository
+
+////////////////////////////////////////////
+
+20.Melihat Remote Branch
+
+● Secara default, saat kita melakukan clone, tidak semua remote branch akan di buat di local git project
+● Jika kita ingin melihat semua daftar branch yang ada di remote repository, kita bisa gunakan perintah :
+  git branch -r
+● Atau jika kita ingin melihat semua branch di local dan remote, kita bisa gunakan perintah :
+  git branch -a
+
+//////////////////////////////////////////
+
+21.Membuat Branch dari Remote Branch
+
+● Karena secara default hanya branch utama yang buat di local git project ketika kita clone, kadang kita ingin membuat local branch yang berisikan data dari remote branch
+● Untuk melakukan hal itu, kita bisa gunakan perintah :
+  git checkout -b localbranch namaremote/remotebranch
+
+////////////////////////////////////
+
+22.Fetch
+
+● Fetch adalah perintah di Git yang digunakan untuk mendapatkan perubahan terakhir dari remote repository
+● Hal ini berguna ketika misal kita ingin mengetahui perubahan apa aja yang sudah terjadi pada remote repository, mungkin rekan kerja kita sudah menambah perubahan ke remote repository
+● Fetch itu tidak akan mengubah isi local Git Project kita
+
+/////////////////////////////////////////
+
+22.Melakukan Fetch
+
+● Untuk melakukan fetch untuk semua branch di remote repository, kita bisa gunakan perintah :
+  git fetch namaremote
+● Atau jika kita ingin melakukan fetch untuk branch tertentu saja di remote, kita bisa gunakan:
+  git fetch namaremote remotebranch
+
+////////////////////////////////////////////
+
+23.Pull
+
+● Jika fetch hanya melakukan untuk mendapatkan perubahan di remote repository tanpa mengubah local repository
+● Dengan menggunakan pull, kita akan mengambil perubahan yang ada di remote repository dan disimpan di local repository
+● Hati-hati jangan sampai terjadi merge conflict, jika terjadi merge conflict, kita harusperbaiki secara manual seperti yang sudah kita pelajari di materi merge
+● Saat kita melakukan pull, secara otomatis kita akan melakukan fetch terlebih dahulu
+
+///////////////////////////////////////
+
+24.Melakukan Pull
+
+● Untuk melakukan pull ke local branch saat ini, kita bisa gunakan perintah 
+  git pull namaremote namaremotebranch
+GIT PULL -u origin all
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
