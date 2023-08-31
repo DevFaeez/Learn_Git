@@ -223,10 +223,138 @@ that mean connection is succes
 
 ● Untuk melakukan pull ke local branch saat ini, kita bisa gunakan perintah 
   git pull namaremote namaremotebranch
-GIT PULL -u origin all
+  git pull -u origin all
 
+///////////////////////////////////////////
 
+25.Tag
 
+● Saat kita melakukan push data ke remote repository, data Tag tidak akan di push juga ke remote repository
+● Jika kita ingin mengirim data Tag juga, kita perlu melakukan push tag tersebut
+
+////////////////////////////////////////////
+
+26.Mengirim Tag 
+
+● Untuk mengirim Tag ke remote repository, kita bisa gunakan perintah 
+  git push namaremote namatag
+● Atau jika kita ingin mengirim semua Tag ke remote repository, kita bisa gunakan perintah 
+  git push namaremote --tags
+
+//////////////////////////////////////////////
+
+27.Mengambil Tag
+
+● Untuk mengambil Tag, kita bisa gunakan perintah 
+  git fetch namaremote namatag
+● Atau jika kita ingin mengambil semua Tag, kita bisa gunakan perintah 
+  git fetch namaremote
+
+///////////////////////////////////////////////
+
+28.Menghapus Tag
+
+● Saat kita menghapus Tag di local repository, data tag tersebut tetap ada di remote repository
+● Jika kita ingin menghapus Tag di remote repository, kita bisa gunakan perintah :
+  git push --delete namaremote namatag
+
+/////////////////////////////////////////////////
+
+29.Pull Request
+
+● Saat kita bekerja dengan tim, biasanya saat melakukan perubahan kita akan membuat di branch yang berbeda dengan branch utama
+● Setelah selesai, kita bisa melakukan yang namanya merge ke branch utama
+● Namun, beberapa fitur di remote git repository mendukung fitur yang namanya Pull Request atau merge Request
+● Fitur ini sangat cocok untuk melakukan review otomatis di remote git repository, tanpa harus manual melakukan review dengan git diff
+
+//////////////////////////////////////////
+
+30.Merge Conflict
+
+● Ketika melakukan Pull Request, kadang sering terjadi Merge Conflict yang menyebabkan tidak bisa lakukan proses merge otomatis
+● Pada kasus seperti itu, kita perlu melakukan merge dari branch asal nya terlebih dahulu, lalu memperbaiki conflict nya
+
+/////////////////////////////////////////
+
+31.Submodule
+
+● Saat kita membuat project aplikasi, kadang kita ingin membuat library yang berisi kode program yang ingin digunakan di beberapa aplikasi
+● Pada kasus seperti ini, fitur Git Submodule sangat bermanfaat
+● Git Submodule memungkinkan kita menambahkan git repository ke git repository yang lain, atau dinamakan submodule
+● Dengan menggunakan submodule, kita bisa melakukan management git repository terpisah, namun kita bisa mengakses git repository lain
+
+/////////////////////////////////////////////
+
+32.Menambah Submodule
+
+● Untuk menambah submodule ke dalam git repository, kita bisa gunakan perintah :
+  git submodule add urlgitrepo namafolder
+● Saat kita menambah submodule, secara otomatis semua git repository submodule tersebut akan di clone ke dalam folder yang kita tentukan
+● Bagaimana git mendeteksi bahwa folder itu adalah submodule?
+● Git akan mendeteksinya dari file .gitmodules
+
+///////////////////////////////////////////
+
+33.Submodule Repository
+
+● Saat kita masuk ke folder submodule, sebenarnya akan seperti berada di project git repository submodule tersebut
+● Kita bisa melakukan management git repository di submodule tersebut, seperti melakukan commit, mengelola branch, dan lain-lain
+● Namun tidak disarankan untuk melakukan perubahan di submodule, lakukanlah perubahan langsung di git repository nya, anggap submodule hanya digunakan untuk menduplikasi perubahan 
+yang terjadi di git repository sumber asli nya
+
+/////////////////////////////////////////
+
+34.Update Submodule
+
+● Jika terjadi perubahan di repository submodule, kita bisa mendapat update perubahannya dengan menggunakan perintah :
+  git submodule update --remote namafolder
+● Atau jika ingin semua submodule di update, kita bisa gunakan perintah :
+  git submodule update --remote
+● Atau jika ingin melakukan update manual, kita bisa masuk ke dalam folder submodule, lalu melakukan pull ke git remote submodule tersebut
+
+///////////////////////////////////////////
+
+35.Clone Submodule
+
+● Saat kita melakukan clone sebuah git repository yang terdapat submodule nya, tidak secara default repository submodule akan di clone juga
+● Setelah kita melakukan clone, kita perlu melakukan perintah init untuk mengaktifkan module nya dengan perintah :
+  git submodule init
+● Perintah ini akan membaca dari file .gitmodule lalu membuat submodule sesuai dengan file tersebut
+● Selanjutnya untuk download submodule git repository nya, kita bisa gunakan perintah \
+  submodule update
+
+///////////////////////////////////////
+
+36.Mengubah Branch Submodule
+
+● Untuk mengubah branch di submodule, sebenarnya kita bisa lakukan secara manual menggunakan perintah git branch
+● Namun hal ini tidak akan membuat konsisten, karena bisa jadi tiap orang bisa berbeda-beda branch submodule nya
+● Agar sama, kita bisa gunakan perintah submodule set-branch untuk mengubah branch submodule, sehingga secara otomatis semua git repo akan menggunakan branch yang sudah ditentukan
+● Caranya kita bisa gunakan perintah :
+  git submodule set-branch --branch namabranch namafolder
+
+////////////////////////////////////
+
+37.Menghapus Submodule
+
+● Untuk menghapus submodule, kita bisa hapus folder submodule nya, lalu ubah file .gitmodules nya
+
+////////////////////////////////////
+
+38.Fork
+
+● Salah satu git workflow yang sebelumnya kita jelaskan di kelas Git Branching adalah Forking Workflow
+● Forking Workflow biasanya digunakan ketika kita ingin kontribusi ke project opensource, dimana kita tidak punya akses langsung ke git repository nya, sehingga kita melakukan forking (duplikasi) 
+git repository ke tempat kita
+● Pada kasus menggunakan github, misal kita melakukan forking dari ProgrammerZamanNow ke github profile kita
+
+//////////////////////////////////////
+
+39.Pull Request
+
+● Semua perubahan nanti dilakukan di git repository profile kita
+● Dan setelah selesai, kita bisa melakukan pull request ke repository sumber forking kita
+● Seperti inilah cara kerja ketika kita berkontribusi ke project opensource
 
 
 
